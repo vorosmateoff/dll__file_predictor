@@ -41,18 +41,18 @@ You can run the `main.py` script from the command line and provide a JSON string
 
 ### Example input
 
-    ```bash
-    python main.py "{\"sha256\": \"example_sha256\", \"label\": 0, \"function_dlls\": [\"function1_dll1\", \"function2_dll2\", \"function3_dll3\"]}"
-    ```
+```bash
+python main.py "{\"sha256\": \"example_sha256\", \"label\": 0, \"function_dlls\": [\"function1_dll1\", \"function2_dll2\", \"function3_dll3\"]}"
+```
 
 
 ### Example output
 
-    ```bash
-    Loading model from model/best_model_rf.pkl
-    File is mostly: Malicious
-    Prediction probabilities for example_sha256: [0.0006, 0.9994]
-    ```
+```bash
+Loading model from model/best_model_rf.pkl
+File is mostly: Malicious
+Prediction probabilities for example_sha256: [0.0006, 0.9994]
+```
 
 
 License
