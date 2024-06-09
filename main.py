@@ -83,12 +83,37 @@ def load_pretrained(model_path: str = "model/best_model_rf.pkl"):
         return joblib.load(model_path)
 
 
+import json
+import sys
+
+
 def main():
-    best_model_tuned = process_df()
+    """
+    Main function that parses a JSON string provided as a command-line argument, loads a pre-trained model,
+    creates an example PEfile, and predicts probabilities for the given PEfile.
+
+    Parameters:
+        None
+
+    Returns:
+        None
+    """
+    if len(sys.argv) < 2:
+        print("Usage: python main.py <json_string>")
+        return
+
+    json_string = sys.argv[1]
+    try:
+        data = json.loads(json_string)
+    except json.JSONDecodeError as e:
+        print("Error parsing JSON:", e)
+        return
+
+    sha256 = data.get("sha256")
+    label = data.get("label")
+    function_dlls = data.get("function_dlls", [])
     best_model_tuned = load_pretrained()
-    example_pefile = PEfile(
-        "example_sha256", 0, ["function1_dll1", "function2_dll2", "function3_dll3"]
-    )
+    example_pefile = PEfile(sha256, label, function_dlls)
     probabilities = predict_proba_for_dlls(
         best_model_tuned, example_pefile.function_dlls
     )
