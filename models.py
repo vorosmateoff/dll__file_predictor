@@ -7,12 +7,13 @@ from sklearn.feature_extraction import FeatureHasher
 import pandas as pd
 import numpy as np
 
+
 def train_model(model, X_train, y_train) -> None:
     """Train the specified model."""
     model.fit(X_train, y_train)
 
 
-def plot_confusion_matrix(model, X_test, y_test, model_name)-> None:
+def plot_confusion_matrix(model, X_test, y_test, model_name) -> None:
     """Plot confusion matrix for the specified model."""
     predictions = model.predict(X_test)
     cm = confusion_matrix(y_test, predictions)
@@ -26,7 +27,7 @@ def plot_confusion_matrix(model, X_test, y_test, model_name)-> None:
     plt.show()
 
 
-def evaluate_models(models, X_train, X_test, y_train, y_test)-> dict:
+def evaluate_models(models, X_train, X_test, y_train, y_test) -> dict:
     """Evaluate models based on F1 score."""
     model_f1_scores = {}
     for model_name, model in models.items():
@@ -57,19 +58,22 @@ def tune_hyperparameters(model, param_grid, X_train, y_train, X_test, y_test):
     return best_model_tuned
 
 
-def calculate_scale_pos_ratio(y_train:pd.Series)->float:
+def calculate_scale_pos_ratio(y_train: pd.Series) -> float:
     """Calculate scale_pos_weight ratio."""
     class_counts = y_train.value_counts()
     return class_counts[0] / class_counts[1]
 
 
-def format_predict_proba(probabilities:np.ndarray,threshold:float=0.5)-> list:
+def format_predict_proba(probabilities: np.ndarray, threshold: float = 0.5) -> list:
     """Format predicted probabilities."""
     probabilities = probabilities.flatten().astype(np.float32).tolist()
-    print(f"File is mostly: {'Malicious' if probabilities[1] > threshold else 'Benign'}")
+    print(
+        f"File is mostly: {'Malicious' if probabilities[1] > threshold else 'Benign'}"
+    )
     return [round(probability, 4) for probability in probabilities]
 
-def predict_proba_for_dlls(model, dll_list:list=[])-> list:
+
+def predict_proba_for_dlls(model, dll_list: list = []) -> list:
     """Predict probabilities for a given list of DLLs using the trained model."""
     # Create a dataframe with the input data
     input_df = pd.DataFrame({"function_dll": [dll_list]})

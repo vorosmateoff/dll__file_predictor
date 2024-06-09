@@ -83,7 +83,7 @@ example_pefile = PEfile("example_sha256", 0, ['function1_dll1', 'function2_dll2'
 probabilities = predict_proba_for_dlls(best_model, example_pefile.function_dlls)
 print(f"Prediction probabilities for {example_pefile.sha256}: {probabilities}")
 
-
+ ```
 
 
 License

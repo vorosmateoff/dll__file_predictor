@@ -5,7 +5,10 @@ from sklearn.feature_extraction import FeatureHasher
 from pefile import PEfile
 from typing import Tuple
 
-def load_data(filepath: str = "data/16_Ransomware_Detection_Using_PE_Imports.csv")-> pd.DataFrame:
+
+def load_data(
+    filepath: str = "data/16_Ransomware_Detection_Using_PE_Imports.csv",
+) -> pd.DataFrame:
     """Load data from CSV file."""
     df = pd.read_csv(filepath, index_col=0)
     return df.dropna(axis=0)
@@ -18,7 +21,7 @@ def encode_labels(df) -> Tuple[pd.DataFrame, LabelEncoder]:
     return df, label_encoder
 
 
-def create_feature_hasher(pefiles)-> pd.DataFrame:
+def create_feature_hasher(pefiles) -> pd.DataFrame:
     """Create hashed features using FeatureHasher."""
     hashed_features = []
     hasher = FeatureHasher(n_features=1000, input_type="string")
