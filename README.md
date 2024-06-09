@@ -43,6 +43,14 @@ python main.py "{\"sha256\": \"example_sha256\", \"label\": 0, \"function_dlls\"
  ```
 
 
+## Example output
+    ```bash
+    Loading model from model/best_model_rf.pkl
+    File is mostly: Malicious
+    Prediction probabilities for example_sha256: [0.0006, 0.9994]
+    ```
+
+
 License
 This project is licensed under the MIT License.
 
