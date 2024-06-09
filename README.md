@@ -37,10 +37,9 @@ You can run the `main.py` script from the command line and provide a JSON string
   "label": 0,
   "function_dlls": ["function1_dll1", "function2_dll2", "function3_dll3"]
 }
- ```
+```
 ```bash
-python main.py '{"sha256": "example_sha256", "label": 0, "function_dlls": ["function1_dll1", "function2_dll2", "function3_dll3"]}'
-
+python main.py "{\"sha256\": \"example_sha256\", \"label\": 0, \"function_dlls\": [\"function1_dll1\", \"function2_dll2\", \"function3_dll3\"]}"
  ```
 
 
